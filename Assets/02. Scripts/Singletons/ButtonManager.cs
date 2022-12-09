@@ -13,7 +13,6 @@ public class ButtonManager : MonoBehaviour
     public ButtonIncreaseBallSpeed _increaseCount;
     public ButtonIncreaseEnemyValue _increaseValue;
     public ButtonMergeBalls _merge;
-    public ButtonRVButton _rv;
 
     private void Awake()
     {

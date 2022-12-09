@@ -46,6 +46,7 @@ public class RingController : MonoBehaviour
             FXManager.instance.PlayParticle(transform.position + Vector3.down, Enums.ParticleName.StunStarExplosion);
             EnemyList.instance.Spawn(value);
             enemy.Hit().Forget();
+            GameManager.instance.IncreaseCurrency(long.Parse(value));
             yield return new WaitForSeconds(0.08f);
         }
     }

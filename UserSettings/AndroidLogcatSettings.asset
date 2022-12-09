@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R5CRA14C8KN",
         "name": "com.mondayoff.blowup",
-        "processId": 19240,
+        "processId": 27517,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,6 +12,36 @@
             "deviceId": "R5CRA14C8KN",
             "name": "com.mondayoff.blowup",
             "processId": 19240,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CRA14C8KN",
+            "name": "com.google.android.youtube",
+            "processId": 19474,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRA14C8KN",
+            "name": "com.mondayoff.blowup",
+            "processId": 10392,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CRA14C8KN",
+            "name": "com.sec.android.app.launcher",
+            "processId": 3171,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRA14C8KN",
+            "name": "com.mondayoff.blowup",
+            "processId": 18191,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRA14C8KN",
+            "name": "com.mondayoff.blowup",
+            "processId": 27517,
             "exited": false
         }
     ],
