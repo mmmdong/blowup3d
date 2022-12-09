@@ -7,6 +7,7 @@ public static class Enums
         Firework,
         Explosion,
         StunExplosion,
+        StunStarExplosion,
         Spawn,
     }
 

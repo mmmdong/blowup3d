@@ -8,7 +8,6 @@ public class RingController : MonoBehaviour
     public Vector3 originPos;
     public Collider _collider;
     public float speed;
-    [SerializeField] private GameObject trail;
     public float _lifeTime;
 
     private bool isPassing;
@@ -44,6 +43,7 @@ public class RingController : MonoBehaviour
         var value = enemy._value.ToString();
         while (isPassing)
         {
+            FXManager.instance.PlayParticle(transform.position + Vector3.down, Enums.ParticleName.StunStarExplosion);
             EnemyList.instance.Spawn(value);
             enemy.Hit().Forget();
             yield return new WaitForSeconds(0.08f);
@@ -59,8 +59,7 @@ public class RingController : MonoBehaviour
             isPassing = true;
             StartCoroutine(CoDrilling(enemy));
             
-            speed *= 0.3f;
-            trail.SetActive(true);
+            speed = 3f;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -75,7 +74,6 @@ public class RingController : MonoBehaviour
         if (other.CompareTag("enemy"))
         {
             speed = originSpeed;
-            trail.SetActive(false);
             isPassing = false;
             StartCoroutine(CoInitialize());
         }
