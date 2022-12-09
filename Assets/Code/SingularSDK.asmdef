@@ -1,0 +1,19 @@
+{
+    "name": "SingularSDK",
+    "rootNamespace": "",
+    "references": [
+        "UnityEngine.Purchasing",
+        "JsonDotNet"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        ""
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

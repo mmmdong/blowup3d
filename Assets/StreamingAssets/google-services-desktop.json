@@ -1,0 +1,36 @@
+{
+  "project_info": {
+    "project_number": "749611981649",
+    "project_id": "blow-up-3d",
+    "storage_bucket": "blow-up-3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749611981649:ios:935275f0262305822d1170",
+        "android_client_info": {
+          "package_name": "com.mondayoff.blowup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749611981649-fk023ri4oac95kg0qouivf962f8mrgsr.apps.googleusercontent.com"
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxhw_PbH3V6mei9U4tnl-C5dOeQ5TQ_vg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
