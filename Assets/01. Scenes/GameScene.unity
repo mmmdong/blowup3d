@@ -7325,7 +7325,6 @@ MonoBehaviour:
   _increaseCount: {fileID: 116972162}
   _increaseValue: {fileID: 922889163}
   _merge: {fileID: 1139899817}
-  _rv: {fileID: 1304574547}
 --- !u!1 &1098155335
 GameObject:
   m_ObjectHideFlags: 0
@@ -8624,7 +8623,7 @@ MonoBehaviour:
   _costValue: 0
   _nextValue: 0
   _buttonLev: 1
-  _value: 1000000000000000
+  _value: 1000
 --- !u!1 &1305787164
 GameObject:
   m_ObjectHideFlags: 0
@@ -10553,7 +10552,6 @@ MonoBehaviour:
   _increaseCount: {fileID: 0}
   _increaseValue: {fileID: 0}
   _merge: {fileID: 0}
-  _rv: {fileID: 0}
 --- !u!1 &1609509670
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class ButtonMergeBalls : ButtonController
     {
         base.ClickAction();
 
-        _btn.interactable = false;
+        _btn.interactable = false;  
         BallObjPool.instance.MergeBalls();
 
         _nextValue = _costValue;

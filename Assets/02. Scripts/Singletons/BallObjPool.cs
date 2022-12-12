@@ -97,7 +97,7 @@ public class BallObjPool : MonoBehaviour
 
 
         //공이 생성된 후에 머지할 갯수가 되는지 체크
-        GameManager.instance._canMerge.Value = CanMergeCheck();
+        //GameManager.instance._canMerge.Value = CanMergeCheck();
         return ball;
     }
 
@@ -195,7 +195,7 @@ public class BallObjPool : MonoBehaviour
         ball._trail.endColor = new Color(trailColor.r, trailColor.g, trailColor.b, 0f);
         ball._trail.enabled = GameManager.instance.isSpdUp.Value;
 
-#if !UNITY_STANDALONE
+#if !UNITY_STANDALONE && !UNITY_EDITOR
         if (grade > GameManager.instance._bestGrade)
         {
             await UniTask.Delay(500);

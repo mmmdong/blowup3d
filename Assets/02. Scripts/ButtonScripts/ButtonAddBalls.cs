@@ -35,7 +35,9 @@ public class ButtonAddBalls : ButtonController
     protected override void ClickAction()
     {
         base.ClickAction();
+#if !UNITY_STANDALONE && !UNITY_EDITOR
         AdsManager.ShowInterstitial();
+#endif
         var ball = BallObjPool.instance.Spawn(_startGrade);
 
         FXManager.instance.PlayParticle(BallObjPool.instance.transform.position, Color.yellow, Enums.ParticleName.Spawn);

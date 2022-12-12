@@ -115,7 +115,9 @@ public class MergeManager : MonoBehaviour
         var ball = BallObjPool.instance.Spawn(grade, transform);
         FXManager.instance.PlayParticle(transform.position, Enums.ParticleName.Firework);
 
+#if !UNITY_STANDALONE && !UNITY_EDITOR
         AdsManager.ShowInterstitial();
+#endif
 
         ball.transform.DOScale(1.5f, 0.1f);
         yield return new WaitForSeconds(0.1f);
