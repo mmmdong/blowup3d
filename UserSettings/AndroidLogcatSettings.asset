@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "R5CRA14C8KN",
     "m_SelectedPackage": {
-        "deviceId": "R5CRA14C8KN",
-        "name": "com.mondayoff.blowup",
-        "processId": 27517,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,37 +11,55 @@
         {
             "deviceId": "R5CRA14C8KN",
             "name": "com.mondayoff.blowup",
-            "processId": 19240,
+            "processId": 10148,
             "exited": true
         },
         {
             "deviceId": "R5CRA14C8KN",
-            "name": "com.google.android.youtube",
-            "processId": 19474,
+            "name": "com.mondayoff.blowup",
+            "processId": 1693,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CRA14C8KN",
+            "name": "com.kakao.talk",
+            "processId": 29668,
             "exited": false
         },
         {
             "deviceId": "R5CRA14C8KN",
             "name": "com.mondayoff.blowup",
-            "processId": 10392,
+            "processId": 26957,
             "exited": true
         },
         {
             "deviceId": "R5CRA14C8KN",
             "name": "com.sec.android.app.launcher",
-            "processId": 3171,
+            "processId": 3230,
             "exited": false
         },
         {
             "deviceId": "R5CRA14C8KN",
             "name": "com.mondayoff.blowup",
-            "processId": 18191,
+            "processId": 30562,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CRC0NWQET",
+            "name": "com.mondayoff.blowup",
+            "processId": 10601,
             "exited": false
         },
         {
-            "deviceId": "R5CRA14C8KN",
+            "deviceId": "R3CRC0NWQET",
             "name": "com.mondayoff.blowup",
-            "processId": 27517,
+            "processId": 23558,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CRC0NWQET",
+            "name": "com.mondayoff.blowup",
+            "processId": 25563,
             "exited": false
         }
     ],

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class EnemyList : MonoBehaviour
 {
     public static EnemyList instance;
-    public GameObject[] array;
+    public int currentLev;
+    public EnemyCollisionController[] enemies;
 
     [Space(20f)]
     [Header("UI")]
@@ -31,11 +32,11 @@ public class EnemyList : MonoBehaviour
             AddText();
         }
 
-        EnemyCollisionController[] enemies = new EnemyCollisionController[array.Length];
         for (var i = 0; i < enemies.Length; i++)
         {
-            enemies[i] = array[i].GetComponent<EnemyCollisionController>();
             enemies[i]._value = i + 1;
+            enemies[i]._fullHp = (long)Mathf.Pow(10, enemies[i]._value) * 5;
+            enemies[i]._currentHp = enemies[i]._fullHp;
         }
     }
 
@@ -90,5 +91,18 @@ public class EnemyList : MonoBehaviour
         }
 
         DestroyText(text);
+    }
+
+    public void BlowEnemy(){
+        StartCoroutine(CoBlow());
+    }
+
+    private IEnumerator CoBlow(){
+        enemies[currentLev].col.isTrigger = true;
+        enemies[currentLev].gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        enemies[currentLev].transform.localScale = Vector3.zero;
+        enemies[currentLev].gameObject.SetActive(true);
+        enemies[currentLev].FullHp();
     }
 }

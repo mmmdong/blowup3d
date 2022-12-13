@@ -10,9 +10,12 @@ public class ButtonIncreaseEnemyValue : ButtonController
 {
     public EnemyToggles _togs;
 
+
     protected override void Start()
     {
         base.Start();
+        _btn.interactable = false;
+        
         if (DataManager.instance.isDataExist)
         {
             _buttonLev = DataManager.instance.player.buttons.btnLevUpData.buttonLev;
@@ -31,6 +34,12 @@ public class ButtonIncreaseEnemyValue : ButtonController
         if (_togs._lev >= _togs.toggles.Length - 1)
         {
             _cost.text = "MAX";
+        }
+        EnemyList.instance.currentLev = (int)_buttonLev - 1;
+
+        if (GameManager.instance._bestGrade >= 2)
+        {
+            MoveButtonPos();
         }
     }
 
@@ -57,16 +66,33 @@ public class ButtonIncreaseEnemyValue : ButtonController
         }
 
         _togs.NextEnemy();
+        EnemyList.instance.enemies[EnemyList.instance.currentLev].FullHp();
         if (_togs._lev >= _togs.toggles.Length - 1)
         {
             _cost.text = "MAX";
             GameManager.instance._canIncreaseLevel.Value = false;
+            transform.DOLocalMoveX(300f, 0.5f).SetRelative().OnComplete(() =>
+        {
+            if (GameManager.instance._canIncreaseLevel.Value)
+                _btn.interactable = false;
+        });
         }
     }
 
-    private IEnumerator CoLevUp(){
+    private IEnumerator CoLevUp()
+    {
+        EnemyList.instance.currentLev = (int)_buttonLev;
         EnemyList.instance.transform.DOScale(1.2f, 0.1f);
         yield return new WaitForSeconds(0.1f);
         EnemyList.instance.transform.DOScale(1f, 0.1f);
+    }
+
+    public void MoveButtonPos()
+    {
+        transform.DOLocalMoveX(-300f, 0.5f).SetRelative().OnComplete(() =>
+        {
+            if (GameManager.instance._canIncreaseLevel.Value)
+                _btn.interactable = true;
+        });
     }
 }

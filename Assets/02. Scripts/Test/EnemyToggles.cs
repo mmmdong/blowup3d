@@ -15,16 +15,12 @@ public class EnemyToggles : MonoBehaviour
     {
         for (var i = 0; i < toggles.Length; i++)
         {
-            toggles[i].onValueChanged.AddListener(EnemyList.instance.array[i].SetActive);
+            toggles[i].onValueChanged.AddListener(EnemyList.instance.enemies[i].gameObject.SetActive);
         }
 
         _lev = DataManager.instance.player.level;
         bg.sprite = backGrounds[_lev % 6];
         toggles[_lev].isOn = true;
-    }
-
-    private void Start()
-    {
     }
 
     public void NextEnemy()

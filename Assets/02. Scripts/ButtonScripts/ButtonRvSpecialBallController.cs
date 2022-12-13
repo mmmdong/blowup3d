@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using MondayOFF;
+using DG.Tweening;
 using UnityEngine;
 
-public class ButtonRvSpecialBallController : ButtonController
+public class ButtonRvSpecialBallController : ButtonRVController
 {
     public RingController _ring;
 
-    protected override async UniTask Awake()
+    protected override void RVAction()
     {
-        await base.Awake();
-        act = ClickAction;
+        base.RVAction();
+        _btn.interactable = false;
+        transform.DOLocalMoveX(_rectTrans.rect.width, 0.5f).SetRelative();
+        _ring.gameObject.SetActive(true);
     }
 
-    protected override void ClickAction()
+    public override void InitButton()
     {
-        base.ClickAction();
-
-        _ring.gameObject.SetActive(true);
+        base.InitButton();
+        transform.DOLocalMoveX(-_rectTrans.rect.width, 0.5f).SetRelative().OnComplete(() =>
+                {
+                    _btn.interactable = true;
+                });
     }
 }

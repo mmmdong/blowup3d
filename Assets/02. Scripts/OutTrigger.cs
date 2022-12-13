@@ -18,6 +18,7 @@ public class OutTrigger : MonoBehaviour
         else if (other.CompareTag("ring"))
         {
             var ring = other.GetComponent<RingController>();
+            ring.Init();
         }
     }
 }

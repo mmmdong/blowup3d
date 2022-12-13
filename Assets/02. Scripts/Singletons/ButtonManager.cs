@@ -57,6 +57,9 @@ public class ButtonManager : MonoBehaviour
                     {
                         if (BallObjPool.instance.CanMergeCheck())
                             GameManager.instance._canMerge.Value = true;
+                        else
+                            GameManager.instance._canMerge.Value = false;
+
                     }
                     else
                     {

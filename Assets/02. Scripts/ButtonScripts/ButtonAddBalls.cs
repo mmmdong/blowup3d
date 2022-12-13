@@ -22,6 +22,7 @@ public class ButtonAddBalls : ButtonController
         if (DataManager.instance.isDataExist)
         {
             _buttonLev = DataManager.instance.player.buttons.btnAddBallData.buttonLev;
+
             _costValue = DataManager.instance.player.buttons.btnAddBallData.costValue;
         }
         else
@@ -35,9 +36,9 @@ public class ButtonAddBalls : ButtonController
     protected override void ClickAction()
     {
         base.ClickAction();
-#if !UNITY_STANDALONE && !UNITY_EDITOR
+//#if !UNITY_STANDALONE && !UNITY_EDITOR
         AdsManager.ShowInterstitial();
-#endif
+//#endif
         var ball = BallObjPool.instance.Spawn(_startGrade);
 
         FXManager.instance.PlayParticle(BallObjPool.instance.transform.position, Color.yellow, Enums.ParticleName.Spawn);

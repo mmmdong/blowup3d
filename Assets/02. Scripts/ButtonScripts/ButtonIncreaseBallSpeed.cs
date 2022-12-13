@@ -9,16 +9,12 @@ using MondayOFF;
 
 public class ButtonIncreaseBallSpeed : ButtonController
 {
-    public Text _text;
-
     private Color _oriColor;
     protected override async UniTask Awake()
     {
         await base.Awake();
-        _oriColor = _text.color;
         GameManager.instance._ballCurrentSpeed.TakeUntilDestroy(this).Subscribe(x =>
                 {
-                    _text.text = string.Format("Speed {0:0.0}", x);
                     if (GameManager.instance.isSpdUp.Value == false)
                         DataManager.instance.player.speed = GameManager.instance._ballCurrentSpeed.Value * 0.5f;
                     else
@@ -27,8 +23,6 @@ public class ButtonIncreaseBallSpeed : ButtonController
         GameManager.instance._curBallCount.TakeUntilDestroy(this).Subscribe(x =>
         {
             DataManager.instance.player.liveBalls = x;
-
-            GameManager.instance.IncreaseTextEffect(_text);
         });
 
         if (GameManager.instance._currentCurrency.Value < _costValue)
@@ -63,8 +57,6 @@ public class ButtonIncreaseBallSpeed : ButtonController
     {
         base.ClickAction();
         AdsManager.ShowInterstitial();
-        if (_text.color == Color.red)
-            _text.color = _oriColor;
 
         if (!GameManager.instance.isSpdUp.Value)
             GameManager.instance._ballCurrentSpeed.Value += 0.2f;
@@ -96,10 +88,5 @@ public class ButtonIncreaseBallSpeed : ButtonController
             _cost.text = "MAX";
             GameManager.instance._canIncreaseSpeed.Value = false;
         }
-    }
-
-    public void ReturnColor()
-    {
-        _text.color = _oriColor;
     }
 }

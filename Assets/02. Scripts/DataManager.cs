@@ -99,7 +99,6 @@ public class DataManager : MonoBehaviour
         GameManager.instance._ballCurrentSpeed.Value = player.speed;
         GameManager.instance._originSpeed = player.speed;
         GameManager.instance._bestGrade = player.bestGrade;
-
     }
 
 
@@ -109,7 +108,7 @@ public class DataManager : MonoBehaviour
         public bool first;
         public int level;
         public int bestGrade;
-
+        public int blowCount;
         public long money;
         public int liveBalls;
         public float speed;

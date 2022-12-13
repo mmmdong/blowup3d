@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour
 {
+    public Collider col;
     protected BallController ball;
     protected RingController ring;
+
+    private void Awake()
+    {
+        col = GetComponent<Collider>();
+    }
+
     protected virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("ball"))

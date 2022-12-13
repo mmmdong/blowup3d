@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     
-    [HideInInspector] public BoolReactiveProperty _canMerge = new BoolReactiveProperty(false);
+    /* [HideInInspector] */ public BoolReactiveProperty _canMerge = new BoolReactiveProperty(false);
     [HideInInspector] public BoolReactiveProperty _canAdd = new BoolReactiveProperty(false);
     [HideInInspector] public BoolReactiveProperty _canIncreaseSpeed = new BoolReactiveProperty(false);
     [HideInInspector] public BoolReactiveProperty _canIncreaseLevel = new BoolReactiveProperty(false);
     public FloatReactiveProperty _ballCurrentSpeed = new FloatReactiveProperty(10);
     public IntReactiveProperty _curBallCount = new IntReactiveProperty(0);
+    public IntReactiveProperty _blowCount = new IntReactiveProperty(0);
     public LongReactiveProperty _currentCurrency = new LongReactiveProperty(0);
     public BoolReactiveProperty isSpdUp = new BoolReactiveProperty(false);
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     private readonly string[] CurrencyUnits = new string[] { "", "K", "M", "G", "T", "P", "E", "Z", "Y", };
 
     public Text _currencyTxt;
+    public Text _blowTxt;
 
     public float _originSpeed;
     private void Awake()
@@ -42,11 +44,13 @@ public class GameManager : MonoBehaviour
         if (DataManager.instance.isDataExist)
         {
             _currentCurrency.Value = DataManager.instance.player.money;
+            _blowCount.Value = DataManager.instance.player.blowCount;
             //_ballFullCount.Value = DataManager.instance.player.totalBallCount;
         }
         else
         {
             DataManager.instance.player.money = _currentCurrency.Value;
+            DataManager.instance.player.blowCount = _blowCount.Value;
             //DataManager.instance.player.totalBallCount = _ballFullCount.Value;
         }
 
@@ -88,6 +92,12 @@ public class GameManager : MonoBehaviour
         _canIncreaseSpeed.TakeUntilDestroy(this).Subscribe(x =>
         {
             ButtonManager.instance._increaseCount._btn.interactable = x;
+        });
+        
+        _blowCount.TakeUntilDestroy(this).Subscribe(x=>{
+            DataManager.instance.player.blowCount = x;
+            _blowTxt.text = ToCurrencyString(x);
+            IncreaseTextEffect(_blowTxt);
         });
     }
 

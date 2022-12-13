@@ -6,83 +6,56 @@ using UnityEngine;
 public class RingController : MonoBehaviour
 {
     public Vector3 originPos;
-    public Collider _collider;
     public float speed;
-    public float _lifeTime;
 
-    private bool isPassing;
-    private float originSpeed;
+    public float collTime;
+    public EnemyCollisionController enemy;
+
+    [SerializeField] private ButtonRvSpecialBallController _rv;
     private void Awake()
     {
         originPos = transform.position;
-        originSpeed = speed;
-    }
-    private void OnEnable()
-    {
-        StartBall();
     }
 
-    public void StartBall()
+    private void Update()
     {
-        StartCoroutine(CoMove());
+        transform.position += Vector3.down * speed * Time.deltaTime;
+        transform.Rotate(Vector3.up, 5000f * Time.deltaTime);
     }
 
-
-    private IEnumerator CoMove()
-    {
-        while (true)
-        {
-            transform.position += Vector3.down * speed * Time.deltaTime;
-            transform.Rotate(Vector3.up, 5000f * Time.deltaTime);
-            yield return null;
-        }
-    }
-
-    private IEnumerator CoDrilling(EnemyCollisionController enemy)
-    {
-        var value = enemy._value.ToString();
-        while (isPassing)
-        {
-            FXManager.instance.PlayParticle(transform.position + Vector3.down, Enums.ParticleName.StunStarExplosion);
-            EnemyList.instance.Spawn(value);
-            enemy.Hit().Forget();
-            GameManager.instance.IncreaseCurrency(long.Parse(value));
-            yield return new WaitForSeconds(0.08f);
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("enemy"))
         {
-            var enemy = other.GetComponent<EnemyCollisionController>();
-            
-            isPassing = true;
-            StartCoroutine(CoDrilling(enemy));
-            
-            speed = 3f;
+            enemy = other.GetComponent<EnemyCollisionController>();
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("enemy"))
         {
+            collTime += Time.deltaTime;
 
+            if (collTime >= 0.08f)
+            {
+                var value = enemy._value.ToString();
+                FXManager.instance.PlayParticle(transform.position + Vector3.down, Enums.ParticleName.StunStarExplosion);
+                EnemyList.instance.Spawn(value);
+
+                enemy.Hit(long.Parse(value));
+                GameManager.instance.IncreaseCurrency(long.Parse(value));
+                collTime = 0f;
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("enemy"))
-        {
-            speed = originSpeed;
-            isPassing = false;
-            StartCoroutine(CoInitialize());
-        }
-    }
 
-    private IEnumerator CoInitialize()
+
+    public void Init()
     {
-        yield return new WaitForSeconds(1.5f);
+        collTime = 0f;
+        _rv.InitButton();
         transform.position = originPos;
         gameObject.SetActive(false);
     }

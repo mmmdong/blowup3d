@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-public class ButtonRVButton : ButtonController
+public class ButtonCheatButton : ButtonController
 {
     private float _originSpeed;
 
@@ -40,17 +40,5 @@ public class ButtonRVButton : ButtonController
 #endif
 
 
-    private IEnumerator RVSpeedUp()
-    {
-        if (GameManager.instance._ballCurrentSpeed.Value == _originSpeed && BallObjPool.instance._spawnBallList.Count > 0)
-        {
-            GameManager.instance._ballCurrentSpeed.Value *= 3f;
-            GameManager.instance.isSpdUp.Value = true;
-            _btn.interactable = false;
-            yield return new WaitForSeconds(3f);
-            GameManager.instance._ballCurrentSpeed.Value = _originSpeed;
-            GameManager.instance.isSpdUp.Value = false;
-            _btn.interactable = true;
-        }
-    }
+    
 }

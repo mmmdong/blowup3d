@@ -110,9 +110,17 @@ public class MergeManager : MonoBehaviour
         {
             BallObjPool.instance.DestroyBall(balls[i]);
             BallObjPool.instance._spawnBallList.Remove(balls[i]);
-            ButtonManager.instance._increaseCount.ReturnColor();
         }
         var ball = BallObjPool.instance.Spawn(grade, transform);
+        if (grade > GameManager.instance._bestGrade)
+        {
+            GameManager.instance._bestGrade = grade;
+            DataManager.instance.player.bestGrade = grade;
+            if(grade == 2)
+            {
+                ButtonManager.instance._increaseValue.MoveButtonPos();
+            }
+        }
         FXManager.instance.PlayParticle(transform.position, Enums.ParticleName.Firework);
 
 #if !UNITY_STANDALONE && !UNITY_EDITOR
@@ -131,7 +139,10 @@ public class MergeManager : MonoBehaviour
         ball._trail.enabled = GameManager.instance.isSpdUp.Value;
 
         ball.StartBall();
-        ButtonManager.instance._merge._btn.interactable = GameManager.instance._canMerge.Value;
+
+
+        var some = BallObjPool.instance.CanMergeCheck();
+        ButtonManager.instance._merge._btn.interactable = GameManager.instance._canMerge.Value && some;
     }
 
 }
