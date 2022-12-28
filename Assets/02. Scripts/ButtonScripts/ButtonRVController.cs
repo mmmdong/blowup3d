@@ -18,8 +18,13 @@ public class ButtonRVController : ButtonController
 
     protected virtual void RVClickAction(Action act = null)
     {
+#if !UNITY_STANDALONE
         //Pass
         AdsManager.ShowRewarded(RVAction);
+#else
+        RVAction();
+#endif
+
     }
 
     protected virtual void RVAction()

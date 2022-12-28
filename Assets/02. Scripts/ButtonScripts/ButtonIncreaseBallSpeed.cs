@@ -13,13 +13,13 @@ public class ButtonIncreaseBallSpeed : ButtonController
     protected override async UniTask Awake()
     {
         await base.Awake();
-        GameManager.instance._ballCurrentSpeed.TakeUntilDestroy(this).Subscribe(x =>
+        /* GameManager.instance._ballCurrentSpeed.TakeUntilDestroy(this).Subscribe(x =>
                 {
                     if (GameManager.instance.isSpdUp.Value == false)
                         DataManager.instance.player.speed = GameManager.instance._ballCurrentSpeed.Value * 0.5f;
                     else
                         DataManager.instance.player.speed = GameManager.instance._ballCurrentSpeed.Value;
-                });
+                }); */
         GameManager.instance._curBallCount.TakeUntilDestroy(this).Subscribe(x =>
         {
             DataManager.instance.player.liveBalls = x;
@@ -67,8 +67,6 @@ public class ButtonIncreaseBallSpeed : ButtonController
         }
 
         GameManager.instance._originSpeed = GameManager.instance._ballCurrentSpeed.Value;
-
-        DataManager.instance.player.speed = GameManager.instance._ballCurrentSpeed.Value;
 
         _nextValue = _costValue;
         _nextValue = (long)Math.Pow(10, _buttonLev + 3);

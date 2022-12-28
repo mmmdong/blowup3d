@@ -45,7 +45,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         GameManager.instance._canIncreaseLevel.Value = false;
                     }
-                    if (x >= _increaseCount._costValue && DataManager.instance.player.speed < 13)
+                    if (x >= _increaseCount._costValue)
                     {
                         GameManager.instance._canIncreaseSpeed.Value = true;
                     }

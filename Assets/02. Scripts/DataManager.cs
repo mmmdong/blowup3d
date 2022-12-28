@@ -91,13 +91,7 @@ public class DataManager : MonoBehaviour
         player = JsonUtility.FromJson<PlayerData>(jsondata);
 
         GameManager.instance._currentCurrency.Value = player.money;
-        if (player.speed < 10f)
-        {
-            player.speed = player.speed * 2;
-
-        }
-        GameManager.instance._ballCurrentSpeed.Value = player.speed;
-        GameManager.instance._originSpeed = player.speed;
+        
         GameManager.instance._bestGrade = player.bestGrade;
     }
 
@@ -111,7 +105,6 @@ public class DataManager : MonoBehaviour
         public int blowCount;
         public long money;
         public int liveBalls;
-        public float speed;
         public int[] liveBallGrade;
 
         public Buttons buttons;
